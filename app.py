@@ -62,38 +62,40 @@ def parse_srt(file_content):
         return None
 
 def get_engineered_prompt(transcript_text):
-    """Constructs the detailed, engineered prompt for the AI model."""
-    # This function now correctly takes the transcript text as an argument
-    # and builds the prompt inside the function call.
+    """
+    Constructs a refined, aggressive prompt for shorter, catchier, and cliffhanger-style headlines.
+    """
     return f"""
 # [ROLE]
-You are a world-class Viral Content Strategist and YouTube expert. Your specialization is the Indian digital media market, and you are fully aware of trends, audience psychology, and effective content formats as of August 2025.
-
-# [CONTEXT]
-- **Audience Focus:** Your recommendations must resonate with the modern Indian YouTube audience.
-- **Platform Nuances:** The primary goal is for YouTube Shorts, which prioritizes high-retention hooks in the first 1-3 seconds. Titles must be compelling enough to drive clicks from the Shorts feed and YouTube search.
+You are a cutting-edge Viral Content Strategist for YouTube Shorts, an expert in creating high-retention, scroll-stopping content for the Indian market as of August 2025. Your entire focus is on creating maximum curiosity in minimum time.
 
 # [TASK]
-Your objective is to analyze the provided video transcript and generate two distinct sets of viral-optimized text:
-1.  **On-Video Headlines:** 10 options of ultra-short text designed to be overlaid on the video to stop viewers from scrolling.
-2.  **YouTube Video Titles:** 10 options of SEO-friendly and click-driven titles for the video upload itself.
-
-You must also score each suggestion out of 10 and provide a clear justification for its potential success.
+Analyze the provided transcript to generate two sets of text. The top priority is creating an irresistible urge to watch the video.
 
 # [INPUT]
 TRANSCRIPT: \"\"\"
 {transcript_text}
 \"\"\"
 
-# [ANALYSIS FRAMEWORK]
-Before generating, you must mentally perform this analysis of the transcript:
-1.  **Identify the Core Conflict:** What is the central comparison or tension in the text?
-2.  **Pinpoint the "Golden Nugget":** What is the single most surprising, memorable, or intriguing phrase or concept?
-3.  **Determine the Emotional Angle:** What emotion should the title evoke? (e.g., Shock, Curiosity, Validation, Exclusivity).
-4.  **Extract SEO Keywords:** Identify essential search terms.
+# [GENERATION GUIDELINES]
+
+## 1. On-Video Headlines (10 Options)
+Your instructions for this section are VERY STRICT.
+- **Goal:** Create an irresistible cliffhanger or a shocking statement. Make the viewer feel they *must* know the answer.
+- **Length:** **STRICTLY 3-5 WORDS.** This is crucial.
+- **Style:**
+    - **MUST** include 1-2 powerful emojis (e.g., 🤫, 🤯, 🚨, 💰, 🚩).
+    - **DO NOT** use full sentences. Use punchy phrases.
+    - Frame it as a secret, a warning, or a shocking revelation.
+- **Examples of the required style:** "Their Secret Pay Trick 🤫", "The 12-Hour Lie 🤯", "Never Sign This... 🚨"
+
+## 2. YouTube Video Titles (10 Options)
+- **Goal:** Maximize Click-Through Rate (CTR) with a punchy, benefit-driven title.
+- **Length:** Keep under 70 characters.
+- **Style:** Start with the most impactful phrase. Use strong keywords and power words. Combine the celebrity asset (if any) with the core conflict. Make it feel like an exposé.
 
 # [OUTPUT FORMAT]
-Present your final output in a clean, readable Markdown format. Follow this structure precisely:
+Present your final output in clean Markdown tables as specified below.
 
 ### **A. On-Video Headlines**
 Create a table with three columns: `Headline (On-Video Text)`, `Viral Score (out of 10)`, and `Why It Works`.
