@@ -63,14 +63,15 @@ def parse_srt(file_content):
 
 def get_engineered_prompt(transcript_text):
     """
-    Constructs a refined, aggressive prompt for shorter, catchier, and cliffhanger-style headlines.
+    Constructs a refined, aggressive prompt for shorter, catchier, and cliffhanger-style headlines,
+    incorporating advanced copywriting styles.
     """
     return f"""
 # [ROLE]
-You are a cutting-edge Viral Content Strategist for YouTube Shorts, an expert in creating high-retention, scroll-stopping content for the Indian market as of August 2025. Your entire focus is on creating maximum curiosity in minimum time.
+You are a top-tier viral copywriter and social media strategist. You specialize in creating high-performing hooks for YouTube Shorts, Instagram Reels, and TikToks, with deep expertise in the Indian market as of August 2025. Your goal is to generate short, emotionally engaging, and curiosity-driven text that stops the scroll.
 
 # [TASK]
-Analyze the provided transcript to generate two sets of text. The top priority is creating an irresistible urge to watch the video.
+Analyze the provided transcript to generate two categories of viral text: Headers and Titles. The output must be simple to understand (no jargon) and follow current content trends and retention psychology.
 
 # [INPUT]
 TRANSCRIPT: \"\"\"
@@ -78,21 +79,42 @@ TRANSCRIPT: \"\"\"
 \"\"\"
 
 # [GENERATION GUIDELINES]
+Your generated ideas MUST include a mix of the following styles:
+- **Shocking/Intriguing:** Create disbelief or a strong urge to know more.
+- **Knowledge-Based:** Frame as a secret, a hack, or a little-known fact.
+- **Aspirational:** Connect with the viewer's desires or goals.
+- **Reverse-Psychology:** Challenge the viewer or tell them *not* to do something.
+- **Relatable Emotion:** Tap into a common feeling or experience.
 
-## 1. On-Video Headlines (10 Options)
-Your instructions for this section are VERY STRICT.
-- **Goal:** Create an irresistible cliffhanger or a shocking statement. Make the viewer feel they *must* know the answer.
-- **Length:** **STRICTLY 3-5 WORDS.** This is crucial.
+## 1. Headers (15 Options)
+- **Purpose:** For on-screen text or thumbnails.
+- **Length:** **STRICTLY 3-5 WORDS.**
 - **Style:**
+    - **MUST** be a punchy phrase, not a full sentence.
     - **MUST** include 1-2 powerful emojis (e.g., 🤫, 🤯, 🚨, 💰, 🚩).
-    - **DO NOT** use full sentences. Use punchy phrases.
-    - Frame it as a secret, a warning, or a shocking revelation.
-- **Examples of the required style:** "Their Secret Pay Trick 🤫", "The 12-Hour Lie 🤯", "Never Sign This... 🚨"
+    - **Examples:** "The 12-Hour Lie 🤯", "Their Secret Pay Trick 🤫", "Stop Chasing Happiness 🚩"
 
-## 2. YouTube Video Titles (10 Options)
-- **Goal:** Maximize Click-Through Rate (CTR) with a punchy, benefit-driven title.
-- **Length:** Keep under 70 characters.
-- **Style:** Start with the most impactful phrase. Use strong keywords and power words. Combine the celebrity asset (if any) with the core conflict. Make it feel like an exposé.
+## 2. Titles (10 Options)
+- **Purpose:** For the video title or caption.
+- **Length:** **STRICTLY UNDER 10 WORDS.**
+- **Style:**
+    - Start with the most impactful phrase.
+    - Make it feel like an exposé or a must-know piece of advice.
+    - Use strong keywords and power words.
+
+# [OUTPUT FORMAT]
+Respond ONLY with clean, formatted output in two categories. DO NOT use tables or add scores/justifications.
+
+**1. Headers (3–5 words max)**
+- [Header 1]
+- [Header 2]
+- ...
+
+**2. Titles (under 10 words)**
+- [Title 1]
+- [Title 2]
+- ...
+"""
 
 # [OUTPUT FORMAT]
 Present your final output in clean Markdown tables as specified below.
