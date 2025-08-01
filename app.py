@@ -61,8 +61,10 @@ def parse_srt(file_content):
         st.error(f"Error parsing SRT file: {e}")
         return None
 
-def get_engineered_prompt(transcript):
+def get_engineered_prompt(transcript_text):
     """Constructs the detailed, engineered prompt for the AI model."""
+    # This function now correctly takes the transcript text as an argument
+    # and builds the prompt inside the function call.
     return f"""
 # [ROLE]
 You are a world-class Viral Content Strategist and YouTube expert. Your specialization is the Indian digital media market, and you are fully aware of trends, audience psychology, and effective content formats as of August 2025.
@@ -79,9 +81,9 @@ Your objective is to analyze the provided video transcript and generate two dist
 You must also score each suggestion out of 10 and provide a clear justification for its potential success.
 
 # [INPUT]
-TRANSCRIPT: """
-{transcript}
-"""
+TRANSCRIPT: \"\"\"
+{transcript_text}
+\"\"\"
 
 # [ANALYSIS FRAMEWORK]
 Before generating, you must mentally perform this analysis of the transcript:
@@ -119,7 +121,8 @@ with st.sidebar:
 
     # Fetch and select model
     try:
-        models = [model.id for model in openai.models.list()]
+        client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+        models = [model.id for model in client.models.list()]
         # Filter for GPT models for relevance
         gpt_models = sorted([m for m in models if 'gpt' in m], reverse=True)
         
@@ -181,6 +184,7 @@ if st.button("🚀 Generate Titles & Headlines"):
     else:
         with st.spinner("🧠 AI is thinking... Crafting the perfect hooks..."):
             try:
+                # The function is now called correctly with the user's input
                 prompt = get_engineered_prompt(transcript_input)
                 
                 client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
@@ -202,4 +206,3 @@ if st.button("🚀 Generate Titles & Headlines"):
                 st.error(f"An OpenAI API error occurred: {e}")
             except Exception as e:
                 st.error(f"An unexpected error occurred: {e}")
-
